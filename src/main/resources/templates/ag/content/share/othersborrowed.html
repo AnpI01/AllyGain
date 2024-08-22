@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title>View My Share Items AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Items Borrowed by Others</li> 
+</ul>
+<hr/>
+
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>Borrowed by Other Users</h2>
+	<p>List of my shared items borrowed by other users. </p>
+
+<th:block th:if="${not #lists.isEmpty(itemslist)}"><th:block th:each="item: ${itemslist}">
+<div class="row"><div class="col-fix1">
+	<div class="tnd"><div class="pdal">    				
+	<div class="cpnbl">	
+<span th:if="${item.image != null AND NOT #strings.isEmpty(item.image)}">
+	<img th:src="'https://storage.googleapis.com/allygain.appspot.com/'+${item.image}" width="250" height="300" th:alt="${item.name}" class="imgitm"/></span>
+ 	</div>
+ 	<div class="cpnbr">
+	<div class="oftbl">  
+	<strong th:text="${item.name}"></strong>
+	<div class="btxtn pto" th:text="${item.desc}"></div> 
+	</div>
+	<div class="pto">Category: <strong th:text="${catmap.get(item.cat)}"></strong></div>   
+		<div class="pto">Listed Date: <strong th:text="${T(com.zenzsol.allygain.util.CommonUtils).getStringDdmmyyyy(item.cDt)}"></strong></div>   
+		<div class="pto">Best Pick up/Drop off Time: <strong th:text="${item.ptime}"></strong></div>   
+		<div class="pto"> Do you want to get the item back? <a rel="nofollow" th:href="@{/share/borrow/byothers/reminder/{itemid}(itemid = ${item.id})}" class="btn btn-agc">Send Reminder</a></div>		
+  		<div class="pto"> Has the item already been returned?  <a rel="nofollow" th:href="@{/share/borrow/byothers/delete/{itemid}(itemid = ${item.id})}" class="btn btn-agc">Update Status</a></div>			 		 				  
+	</div>  			 	
+ 	</div></div>
+</div></div>
+</th:block>
+</th:block>
+<th:block th:if="${#lists.isEmpty(itemslist)}">
+<p>None of your items are borrowed. </p>
+</th:block>
+
+
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

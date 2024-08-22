@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title>Delete My Item AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Delete Item</li> 
+</ul>
+<hr/>
+
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>Delete My Listed Item</h2>
+<span th:if="${deleted == 'n'}">
+	<p>Do you want to delete the item? </p>
+    <a rel="nofollow" th:href="@{/trade/item/delete/cancel/{itemid}(itemid = ${itemid})}" class="btn btn-deal">Cancel</a>		
+     <a rel="nofollow" th:href="@{/trade/item/delete/accept/{itemid}(itemid = ${itemid})}" class="btn btn-deal">Delete</a>	
+     </span>
+     <span th:if="${deleted == 'y'}">
+	<p>Item has been deleted </p>
+     </span>
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

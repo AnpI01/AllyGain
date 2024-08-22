@@ -1,0 +1,6 @@
+User-agent: *
+
+
+Disallow: /company/*
+Disallow: /contact
+Disallow: /contact/*

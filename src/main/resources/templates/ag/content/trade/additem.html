@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Add Item - AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Add Item</li> 
+</ul>
+<hr/>
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>Post Item</h2>
+	<p>Add the item intended for selling within your community. </p>
+<div class="mlb"><h4 class="gentxth">Item Details</h4></div>
+		<form enctype="multipart/form-data" action="#" th:action="@{/trade/item/add}" method="post" th:object="${agItemUI}" class="form-horizontal">
+		<div class="mlb" th:if="${#fields.hasGlobalErrors()}" th:errorclass="dberror"  th:errors="*{global}"></div>	
+		<span th:if="${bigfile == 'y'}"><p><div class="dberror"> Image size should not be more than 1MB.</div></p></span>	
+				<span th:if="${agItemUI.isSubmitted}"><p><div class="dbsucc">Product has been listed.</div></p></span>				
+		<span th:if="${!agItemUI.isSubmitted}">
+		<input type="hidden" th:field="*{id}"  th:value="${id}" />
+			<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Item Name*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{name}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('name')}" th:errorclass="dberror" th:errors="*{name}" />
+    				</div>
+  			</div>
+				<div class="form-group">						
+    				<label for="category" class="col-sm-2 control-label">Category*</label>
+    				<div class="col-sm-10">
+    				<select th:field="*{category}" class="form-control input-sm">
+    						<option th:value="'fa'" th:text="Fashion" th:selected="${category=='fa'}"></option>
+    						<option th:value="'el'" th:text="Electronics" th:selected="${category=='el'}"></option>
+    						<option th:value="'ki'" th:text="Kids" th:selected="${category=='ki'}"></option>
+    						<option th:value="'fu'" th:text="Furniture" th:selected="${category=='fu'}"></option>
+    						<option th:value="'kh'" th:text="Kitchen" th:selected="${category=='kh'}"></option>
+    						<option th:value="'ot'" th:text="Other" th:selected="${category=='ot'}"></option>
+					</select>
+    				<p th:if="${#fields.hasErrors('category')}" th:errorclass="dberror" th:errors="*{category}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="description" class="col-sm-2 control-label">Description</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{description}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('description')}" th:errorclass="dberror" th:errors="*{description}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="price" class="col-sm-2 control-label">Price</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{price}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('price')}" th:errorclass="dberror" th:errors="*{price}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="image" class="col-sm-2 control-label">Picture (Max 1MB)</label>
+    				<div class="col-sm-10">
+    				<input type="file" th:field="*{image}"  class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('image')}" th:errorclass="dberror" th:errors="*{image}" />
+    				</div>
+  			</div>
+  						
+	    	<div class="bt-acc">
+      			<button type="submit" class="btn btn-agc">SUBMIT</button>
+    			</div>
+		</span>
+	 	 </form>	
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title>View Items Listed on AllyGain</title>
+<meta name="robots" CONTENT="INDEX, FOLLOW" />
+<meta name="description" content="View items listed within your residential community."/>
+<meta name="keywords" content="Buy, Sell, listing, Share, Reserve Resources Within Residential Communities AllyGain"/>
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / View Listed Items</li> 
+</ul>
+<hr/>
+<div class="prdt" id="hdcpntittxt"><h1>View Listed Items</h1>
+</div>
+
+<div class="prdml">
+<hr/>
+<div class="prdhd">Categories</div>
+<div class="nano"><div class="nano-content ">
+<div class=""><input id="Fashion" name="itmcat" type="radio" value="cb" th:checked="${category == 'cb'}"/>
+Children's Book
+</div>
+<div class=""><input id="Electronics" name="itmcat" type="radio" value="ab" th:checked="${category == 'ab'}"/>
+Adults Book
+</div>
+<div class=""><input id="Kids" name="itmcat" type="radio" value="ac" th:checked="${category == 'ac'}"/>
+Academic Book
+</div>
+<div class=""><input id="Furniture" name="itmcat" type="radio" value="ty" th:checked="${category == 'ty'}"/>
+Toys
+</div>
+<div class=""><input id="Kitchen" name="itmcat" type="radio" value="ut" th:checked="${category == 'ut'}"/>
+Utilities
+</div>
+<div class=""><input id="Other" name="itmcat" type="radio" value="ot" th:checked="${category == 'ot'}"/>
+Other
+</div>
+<div class=""><input id="All" name="itmcat" type="radio" value="all" th:checked="${category == ''}"/>
+All
+</div>
+</div></div>
+<th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block>
+</div>
+<div class="prdmr">
+<hr/>
+
+<div th:if="${#lists.isEmpty(itemslist)}"><section style="height:500px" class="prdt">No Items listed in the selected category.</section></div>  
+<section>
+<div id="cpnresults" class="pto">
+<th:block th:replace="~{ag/content/share/ajaxitems :: itemlst}"></th:block>
+</div>
+</section>
+
+<form id="itemresultsform" action="/share/items/nextitems">
+<input type="hidden" id="catgry" name="catgry" th:value="${category}">
+<input type="hidden" id="curval" name="curval"  th:value="${lstitem}">
+<th:block th:if="${lstitem == 'end'}">
+<button type="button" id="itemsresultsb" class="btn btn-agc btlnh ndiscen" style="width:100%;">LOAD MORE ITEMS</button>
+</th:block>
+<th:block th:if="${lstitem != 'end'}">
+<button type="button" id="itemsresultsb" class="btn btn-agc btlnh" style="width:100%;">LOAD MORE ITEMS</button>
+</th:block>
+<div id="itemlistdim" class="ndiscen"><img src="/img/ajax-loader.gif" alt="loading data"></div>
+
+</form>
+<script src="/js/itemslst.js"></script>
+
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

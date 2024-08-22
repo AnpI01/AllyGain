@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Reserve Resources, Buy/Sell & Share/Utilize Shared items within Residential Communities - AllyGain</title>
+<meta name="robots" CONTENT="INDEX, FOLLOW" />
+<meta name="description" content="Buy & Sell Products, Share Books and Utilities, Reserve Resources (play grounds, tt tables, tennis courts, community halls, etc) Within Residential Communities  - AllyGain."/>
+<meta name="keywords" content="Residentail communities, gated communities, apartment and villa communities, application for buying, selling, sharing, resource reservation."/>
+<meta name="twitter:title" content="Buy, Sell, Share, Reserve Resources Within Residential Communities - AllyGain"><meta name="twitter:description" content="Buy & Sell Products, Share Books and Utilities, Reserve Resources (play grounds, tt tables, tennis courts, community halls, etc) Within Residential Communities - AllyGain.">
+<meta name="twitter:image" content="https://www.allygain.com/img/logo.png"><meta name="twitter:card" content="Summary"><meta name="twitter:url" content="http://www.allygain.com/"><meta property="twitter:site" content="@AllyGain" />
+<link rel="canonical" href="https://www.allygain.com">
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+
+ <div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>  
+
+ <main>
+
+<div class="dc-clear ptthre"></div>
+
+<div class="containerall">
+<div class="dc-clear"></div>
+<div class="panel">
+<div class="panel-body">
+<div class= "row btxth mtb">
+<p>Tech Solution for communities to eliminate wait times in utilizing community resources, to enable sharing within the community and to help members resell items. </p>
+</div>
+</div>
+</div>
+<div class="dc-clear"></div>
+<div class="panel">
+<div class="panel-body">
+<div class= "row">
+<div class="mtb"><h2>Reserve</h2><p>You can book facilities in advance using AllyGain platform, eliminating the need for you to wait for your turn to use any facility within your community, for example tennis court. After your community is registered on AllyGain and all the facilities are added by your community representative, you can start using this feature.</p></div>
+</div></div></div>
+<div class="dc-clear"></div>
+<div class="panel">
+<div class="panel-body">
+<div class= "row">
+<div class="mtb"><h2>Share</h2><p>Items such as step-ladders, hoses, tools and other utilities, and books are shared within the community. This feature makes sharing within the community easy. It allows residents to post items for sharing, borrow items, track status of items and to send reminders. </p></div>
+</div></div></div>
+<div class="dc-clear"></div>
+<div class="panel">
+<div class="panel-body">
+<div class= "row">
+<div class="mtb"><h2>Buy & Sell</h2><p>Reselling items within the community is very common. Buy & sell feature on this platform allows sellers to list items and buyers to view listed items for sale and contact sellers.</p></div>
+</div></div></div>
+<div class="dc-clear"></div>
+<div class="panel">
+<div class="panel-body">
+<div class= "row">
+<div class="mtb"><h2>Register Community</h2><p>To use the platform, first your community representative needs to register your community, upload data of community users who will use the platform, and add facilities & other details of the community.</p><p><div sec:authorize="!isAuthenticated()"><a rel="follow" href="/addcommunity" class="btn btn-agc">Add Community</a></div></p></div>
+</div></div></div>
+<div class="dc-clear"></div>
+<div class="panel">
+<div class="panel-body">
+<div class= "row">
+<div class="mtb"><h2>Community Registered?</h2><p>If your community already registered on AllyGain, you can login using your email id.</p><div sec:authorize="!isAuthenticated()"><p><a rel="follow" href="/login" class="btn btn-agc">Login</a></p></div></div>
+</div>
+</div>
+</div>
+
+</div>
+</main> 
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

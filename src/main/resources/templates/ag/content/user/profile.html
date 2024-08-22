@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title>User Account AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / My Account</li> 
+</ul>
+<hr/>
+<div class="prdml">
+<div sec:authorize="hasAuthority('ROLE_USER')"><th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block></div>
+<div sec:authorize="hasAuthority('ROLE_AGADMIN')"><th:block th:replace="~{ag/fragments/usersidenav :: superuser}"></th:block></div></div>
+<div class="prdmr">
+<hr/>
+<div sec:authorize="hasAuthority('ROLE_USER')">
+Using this platform, you can buy or sell items, share items and book reservation for community resources.
+
+</div>
+<div sec:authorize="hasRole('ROLE_AGADMIN')">
+<div class="prdhd">Actions</div>
+<div class="nano"><div class="nano-content ">
+<p>To give access to the platform, you need to add a user for each unit in your community. First, you need to prepare a file containing a list of users. Each line in the file should contain unit identification and email address of the owner separated by a comma. Then upload the file. Email with instructions as to how to login will be sent to the users. <a href="/user/uploadusers">Upload users</a></p>
+<p>To enable reservation, add facilities for which reservation feature would be helpful for community users. <a href="/user/resource/add">Add Facility</a></p>
+<p>View list of facilities for which reservation is enabled. <a href="/user/resource/view">View Facilities</a></p>
+</div></div>
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

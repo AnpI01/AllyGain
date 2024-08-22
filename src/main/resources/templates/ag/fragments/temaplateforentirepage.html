@@ -1,0 +1,29 @@
+
+ <!--THIS IS THE TEAMPLATE FOR ENTIRE PAGE ADD HEADER AND BODY AS MENTIONED BELOW FOR EACH PAGE -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 
+ <!-- PAGE SPECIFIC HEADER CONTENT -->
+
+
+<meta th:replace="~{/zv/fragments/header :: partheader}"></meta>
+
+</head>
+<body>
+
+<div th:replace="~{/zv/fragments/navmenu :: tobarcmp}"></div>
+
+<div th:replace="~{/zv/fragments/navmenu :: headermenu}"></div>
+
+ <!-- PAGE SPECIFIC BODY CONTENT -->
+
+
+<footer th:replace="~{/zv/fragments/footer :: tobarcmp}"></footer>
+
+
+</body>
+</html>

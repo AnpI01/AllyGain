@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Add Residential Community - AllyGain</title>
+<meta name="robots" CONTENT="INDEX, FOLLOW" />
+<meta name="description" content="Add residential community to provide platform for residents to buy, sell, share, reserve resources within the residential community."/>
+<meta name="keywords" content="Buy, Sell, Share, Reserve Resources Within Residential Communities AllyGain"/>
+
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+ <main>
+		<div class="dc-clear containerall">
+		<div class="panel panel-default">
+  		<div class="panel-body">
+<h2>Add Your Community</h2>
+	<p>Register your community to provide the features of the platform to residents of your community. Community representative has to submit this form to register the community, then add users and facilities. After the users list is uploaded, email with instructions as to how to login will be sent to each user. </p>
+		<div class="mlb"><h4 class="gentxth">Community</h4></div>
+		<form action="#" th:action="@{/addcommunity}" method="post" th:object="${communityUI}" class="form-horizontal">	
+		 <div class="mlb" th:if="${#fields.hasGlobalErrors()}" th:errorclass="dberror"  th:errors="*{global}"></div>
+				<span th:if="${communityUI.isSubmitted}"><p><div class="dbsucc">Community has been registered, now login and add residents.</div></p></span>				
+		<span th:if="${!communityUI.isSubmitted}">
+			<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Community Name*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{name}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('name')}" th:errorclass="dberror" th:errors="*{name}" />
+    				</div>
+  			</div>
+				<div class="form-group">						
+    				<label for="addressOne" class="col-sm-2 control-label">Address Line One*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{addressOne}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('addressOne')}" th:errorclass="dberror" th:errors="*{addressOne}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="addressTwo" class="col-sm-2 control-label">Address Line Two</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{addressTwo}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('addressTwo')}" th:errorclass="dberror" th:errors="*{addressTwo}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="city" class="col-sm-2 control-label">City*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{city}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('city')}" th:errorclass="dberror" th:errors="*{city}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="state" class="col-sm-2 control-label">State*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{state}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('state')}" th:errorclass="dberror" th:errors="*{state}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="country" class="col-sm-2 control-label">Country*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{country}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('country')}" th:errorclass="dberror" th:errors="*{country}" />
+    				</div>
+  			</div>
+  			<div class="mlb"><h4 class="gentxth">Community Manager or SPOC</h4></div>
+  						<div class="form-group">						
+    				<label for="spoc" class="col-sm-2 control-label">Name*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{spoc}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('spoc')}" th:errorclass="dberror" th:errors="*{spoc}" />
+    				</div>
+  			</div>
+
+  			 <div class="form-group">						
+    				<label for="phone" class="col-sm-2 control-label">Phone*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{phone}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('phone')}" th:errorclass="dberror" th:errors="*{phone}" />
+    				</div>
+  			</div>
+  			<div class="form-group">
+    				<label for="email" class="col-sm-2 control-label">Email*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{email}" maxlength="80" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('email')}" th:errorclass="dberror" th:errors="*{email}" />
+    				</div>
+  			</div>
+  				<div class="form-group">
+    				<label for="password" class="col-sm-2 control-label">Password*</label>
+    				<div class="col-sm-10">
+    				<input type="password" th:field="*{password}" maxlength="80" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('password')}" th:errorclass="dberror" th:errors="*{password}" />
+    				</div>
+  			</div>
+	    	<div class="bt-acc">
+      			<button type="submit" class="btn btn-agc">SUBMIT</button>
+    			</div>
+		</span>
+	 	 </form>
+</div>
+</div></div></main> 
+</body>
+
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

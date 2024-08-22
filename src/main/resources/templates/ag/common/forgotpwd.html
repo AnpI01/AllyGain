@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Forgot password - AllyGain</title>
+<meta name="robots" CONTENT="INDEX, NOFOLLOW" />
+
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+ <main>
+		<div class="dc-clear containerall">
+		<div class="panel panel-default">
+  		<div class="panel-body">
+<h2>Login</h2>
+
+		<div class="mlb"><h4 class="gentxth"></h4></div>
+		<form action="#" th:action="@{/forgotpwd}" method="post"  class="form-horizontal">	
+		<span th:if="${status}"><p><div class="dbsucc">Email has been sent with instructions for resetting password.</div></p></span>
+		<span th:if="${emailerror}"><p><div class="dberror">Please enter valid email id.</div></p></span>
+		<span th:if="${!status}">
+  					<div class="form-group">
+    				<label for="email" class="col-sm-2 control-label">Email Id*</label>
+    				<div class="col-sm-10">
+    				<input type="text" id="email" name="email" placeholder="Email Id" required autofocus maxlength="80" class="form-control input-sm" />     				
+    				</div>
+  			</div>
+	    	<div class="bt-acc">
+      			<button type="submit" class="btn btn-agc">SUBMIT</button>
+    			</div>
+		</span>
+	 	 </form>
+</div>
+</div></div></main> 
+</body>
+
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

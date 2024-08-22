@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title> Resources AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Add Resource</li> 
+</ul>
+<hr/>
+
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: superuser}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>Add Resource</h2>
+	<p>Add/modify a resource to enable reservation feature on it for community users. </p>
+
+		<form action="#" th:action="@{/user/resource/add}" method="post" th:object="${resourceUI}" class="form-horizontal">	
+		<div class="mlb" th:if="${#fields.hasGlobalErrors()}" th:errorclass="dberror"  th:errors="*{global}"></div>
+				<span th:if="${resourceUI.isSubmitted}"><p><div class="dbsucc">Resource has been added.</div></p></span>				
+		<span th:if="${!resourceUI.isSubmitted}">
+		<input type="hidden" th:field="*{id}"  th:value="${id}" />
+			<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Resource or Facility Name*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{name}" maxlength="100" class="form-control input-sm" />
+    				<p>ex: Tennis court, Swimming pool, Community Hall, etc.</p>
+    				<p th:if="${#fields.hasErrors('name')}" th:errorclass="dberror" th:errors="*{name}" />
+    				</div>
+  			</div>	
+  						<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Facility Opens At*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{opensAt}" maxlength="100" class="form-control input-sm" />
+    				<p>ex: Enter 8 if it opens at 8am.</p>
+    				<p th:if="${#fields.hasErrors('opensAt')}" th:errorclass="dberror" th:errors="*{opensAt}" />
+    				</div>
+  			</div>	
+  			  						<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Facility Closes At*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{closesAt}" maxlength="100" class="form-control input-sm" />
+    				<p><p>ex: Enter 20 if it closes at 8pm.</p></p>
+    				<p th:if="${#fields.hasErrors('closesAt')}" th:errorclass="dberror" th:errors="*{closesAt}" />
+    				</div>
+  			</div>	
+  						<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Reservation duration* </label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{reservationDuration}" maxlength="100" class="form-control input-sm" />
+    				<p>Duration in number of hours, ex: 2</p>
+    				<p th:if="${#fields.hasErrors('reservationDuration')}" th:errorclass="dberror" th:errors="*{reservationDuration}" />
+    				</div>
+  			</div>	
+  						<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Comments</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{comments}" maxlength="100" class="form-control input-sm" />
+    				<p>Facility timing exceptions, rules, etc.</p>
+    				<p th:if="${#fields.hasErrors('comments')}" th:errorclass="dberror" th:errors="*{comments}" />
+    				</div>
+  			</div>	
+						
+	    	<div class="bt-acc">
+      			<button type="submit" class="btn btn-agc">SUBMIT</button>
+    			</div>
+		</span>
+	 	 </form>
+
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

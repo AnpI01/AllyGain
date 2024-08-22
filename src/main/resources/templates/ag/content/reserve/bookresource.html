@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title>Book Resource AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Add Resource</li> 
+</ul>
+<hr/>
+
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>Book Resource</h2>
+	<p>Book a resource in your community. </p>
+
+		<form action="#" th:action="@{/reserve/book}" method="post" th:object="${reservationUI}" class="form-horizontal">	
+				<span th:if="${reservationUI.isSubmitted}"><p><div class="dbsucc">Resource has been booked.</div></p></span>			
+				<span th:if="${#lists.isEmpty(comRes) and !reservationUI.isSubmitted}"><p><div class="dbsucc">No registered resource found, contact your community manager.</div></p></span>				
+		<span th:if="${!reservationUI.isSubmitted and !#lists.isEmpty(comRes)}">
+		 <p th:if="${#fields.hasGlobalErrors()}" th:errorclass="dberror"  th:errors="*{global}"></p>
+		 <input type="hidden" th:field="*{id}"  th:value="${id}" />
+			<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Select Facility*</label>
+    				<div class="col-sm-10">
+    				<select th:field="*{resourceId}">
+   								 <option th:each="commres : ${comRes}" th:value="${commres.id}" th:text="${commres.name}"></option>   
+					</select>    			
+    				<p th:if="${#fields.hasErrors('resourceId')}" th:errorclass="dberror" th:errors="*{resourceId}" />
+    				</div>
+  			</div>
+  			  						<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Date*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{bookingdate}" maxlength="100" class="form-control input-sm" />
+    				<p>ex: Enter date dd/mm/yyyy format.</p>
+    				<p th:if="${#fields.hasErrors('bookingdate')}" th:errorclass="dberror" th:errors="*{bookingdate}" />
+    				</div>
+  			</div>		
+  						<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Start Time*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{startTime}" maxlength="100" class="form-control input-sm" />
+    				<p>ex: Enter 18 for starting at 6pm.</p>
+    				<p th:if="${#fields.hasErrors('startTime')}" th:errorclass="dberror" th:errors="*{startTime}" />
+    				</div>
+  			</div>	
+  			<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">End Time</label>
+    				<div class="col-sm-10">
+    				<p>Reservation end time is based on the allowed duration for the resource.</p>
+    				</div>
+  			</div>	
+						
+	    	<div class="bt-acc">
+      			<button type="submit" class="btn btn-agc">SUBMIT</button>
+    			</div>
+		</span>
+	 	 </form>
+
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

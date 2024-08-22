@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title>Upload Users AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Upload Users</li> 
+</ul>
+<hr/>
+
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: superuser}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>Upload Users</h2>
+	<p>Upload CSV file containing user details for each unit in your community. The file should contain only two columns, first column for UnitNumber and second column for EmailAddress of the unit-owner. </p>
+<p>Only five users can be added using this functionality.If you need to add additional users, please contact us.</p>
+		<form enctype="multipart/form-data" action="#" th:action="@{/user/uploadusers}" method="post" th:object="${usersFile}" class="form-horizontal">
+		<div class="mlb" th:if="${#fields.hasGlobalErrors()}" th:errorclass="dberror"  th:errors="*{global}"></div>	
+				<span th:if="${usersFile.isSubmitted}"><p><div class="dbsucc">Users file has been uploaded.</div></p></span>				
+		<span th:if="${!usersFile.isSubmitted}">
+			<div class="form-group">						
+    				<label for="image" class="col-sm-2 control-label">Users File* ( 5 users limit)</label>
+    				<div class="col-sm-10">
+    				<input type="file" th:field="*{users}"  class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('users')}" th:errorclass="dberror" th:errors="*{users}" />
+    				</div>
+  			</div>  						
+	    	<div class="bt-acc">
+      			<button type="submit" class="btn btn-agc">SUBMIT</button>
+    			</div>
+		</span>
+	 	 </form>
+
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

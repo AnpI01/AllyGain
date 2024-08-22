@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
+
+<div id="topbarcomp" th:fragment="tobarcmp">
+<div id="dcheadlg" class="wbg dc-wh dc-headlg pb pt" >       
+<div class="containerall">		
+<a  th:href="@{/}"><span class="logo2">AllyGain</span></a> 
+<div sec:authorize="isAuthenticated()">
+<ul class="lst-ilna dc-fr ml">
+<li><a rel="nofollow" href="/myaccount" class="btn btn-agc">My Account</a></li>
+<li><a rel="nofollow" href="/logout" class="btn btn-agc">Logout</a> </li> 
+</ul>
+</div>
+<div sec:authorize="!isAuthenticated()">
+<ul class="lst-ilna dc-fr ml">
+<li><a rel="follow" href="#" class="btn btn-deal" onclick="tstSpc()">Demo Admin</a></li>
+<li><a rel="follow" href="#" class="btn btn-deal" onclick="tstUsr()">Demo User</a> </li> 
+<li><a rel="follow" href="/addcommunity" class="btn btn-agc">Add Community</a></li>
+<li><a rel="follow" href="/login" class="btn btn-agc">Login</a> </li> 
+</ul>
+</div>		
+</div>
+</div>
+
+<a href="#" class="backtotop"><i class="fa fa-arrow-circle-up fa-3x"></i></a>
+<div sec:authorize="!isAuthenticated()">
+<form id="tstspc" action="/login" method="post">
+  <input type="hidden" id="username" name="username" value="allygaincom@gmail.com">
+  <input type="hidden" id="password" name="password" value="test1234">
+  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+</form>
+<form id="tstusr" action="/login" method="post">
+  <input type="hidden" id="username" name="username" value="raoanishp@gmail.com">
+  <input type="hidden" id="password" name="password" value="test1234">
+  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+</form>
+<script>
+  function tstUsr() {
+    const form = document.getElementById('tstusr');
+    form.submit();
+  }
+    function tstSpc() {
+    const form = document.getElementById('tstspc');
+    form.submit();
+  }
+</script></div>
+</div>
+<div class="dc-wh" th:fragment="headermenu">    
+<div id="dnbnva" class="dc-clear dc-navbar"> 
+<div class="containerall">
+<nav>	
+    <ul >
+
+    </ul>
+ </nav>    
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+runtime: java17
+default_expiration: 100d
+automatic_scaling:
+ max_idle_instances: 3
+ min_pending_latency: 14.8s

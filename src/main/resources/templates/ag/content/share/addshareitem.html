@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Add Item for Sharing in your Residential Community - AllyGain</title>
+<meta name="robots" CONTENT="INDEX, FOLLOW" />
+<meta name="description" content="Add item for sharing within your residential community."/>
+<meta name="keywords" content="Buy, Sell, listing, Share, Reserve Resources Within Residential Communities AllyGain"/>
+
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+ <main>
+<div class="containerall panel">
+<div class="panel-body">
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Add Item</li> 
+</ul>
+<hr/>
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+<h2>Add Item for Sharing</h2>
+	<p>Add an item intended for sharing within your community. Interested users view listed items for sharing and send a request for borrowing any interested item.
+	The owner of the item will receive notification and the borrower will come and pick up. Once borrower is done, it is dropped off at your location. </p>
+		<div class="mlb"><h4 class="gentxth">Item Details</h4></div>
+		<span th:if="${bigfile == 'y'}"><p><div class="dberror">Image should not be more than 1MB.</div></p></span>	
+		<form enctype="multipart/form-data" action="#" th:action="@{/share/item/add}" method="post" th:object="${shareItemUI}" class="form-horizontal">
+		<div class="mlb" th:if="${#fields.hasGlobalErrors()}" th:errorclass="dberror"  th:errors="*{global}"></div>	
+				<span th:if="${shareItemUI.isSubmitted}"><p><div class="dbsucc">Product has been listed.</div></p></span>				
+		<span th:if="${!shareItemUI.isSubmitted}">
+		<input type="hidden" th:field="*{id}"  th:value="${id}" />
+			<div class="form-group">						
+    				<label for="name" class="col-sm-2 control-label">Item Name*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{name}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('name')}" th:errorclass="dberror" th:errors="*{name}" />
+    				</div>
+  			</div>
+				<div class="form-group">						
+    				<label for="category" class="col-sm-2 control-label">Category*</label>
+    				<div class="col-sm-10">
+    				<select th:field="*{category}" class="form-control input-sm">
+    						<option th:value="'cb'" th:text="${'Children''s Book'}"></option>
+    						<option th:value="'ab'" th:text="${'Adult Book'}"></option>
+    						<option th:value="'ac'" th:text="${'Academic Book'}"></option>
+    						<option th:value="'ty'" th:text="Toys"></option>
+    						<option th:value="'ut'" th:text="Utilities"></option>
+    						<option th:value="'ot'" th:text="Other"></option>
+					</select>
+    				<p th:if="${#fields.hasErrors('category')}" th:errorclass="dberror" th:errors="*{category}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="description" class="col-sm-2 control-label">Description</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{description}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('description')}" th:errorclass="dberror" th:errors="*{description}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="ptime" class="col-sm-2 control-label">Preferred Pick-up and Drop-off Time*</label>
+    				<div class="col-sm-10">
+    				<input type="text" th:field="*{ptime}" maxlength="100" class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('ptime')}" th:errorclass="dberror" th:errors="*{ptime}" />
+    				</div>
+  			</div>
+  						<div class="form-group">						
+    				<label for="image" class="col-sm-2 control-label">Picture (Max 1MB)</label>
+    				<div class="col-sm-10">
+    				<input type="file" th:field="*{image}"  class="form-control input-sm" />
+    				<p th:if="${#fields.hasErrors('image')}" th:errorclass="dberror" th:errors="*{image}" />
+    				</div>
+  			</div>
+  						
+	    	<div class="bt-acc">
+      			<button type="submit" class="btn btn-agc">SUBMIT</button>
+    			</div>
+		</span>
+	 	 </form></div>
+</div>
+</div></main> 
+</body>
+
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

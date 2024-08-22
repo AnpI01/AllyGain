@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> </head>
+<body>
+
+<th:block th:fragment="user">
+<hr/>
+<div class="prdhd">Buy & Sell</div>
+<div class="nano"><div class="nano-content ">
+<p><a href="/trade/items/all">View Items</a></p>
+<p><a href="/trade/item/add">Post Item</a></p>
+<p><a href="/trade/myitems/view">View My Posted Items</a></p>
+</div></div>
+<div class="prdhd">Share Utilities/Books</div>
+<div class="nano"><div class="nano-content ">
+<p><a href="/share/items/all">Browse Shared Items</a></p>
+<p><a href="/share/item/add">Share An Item</a></p>
+<p><a href="/share/myitems/view">My Shared Items</a></p>
+<p><a href="/share/borrow/byuser">Items Borrowed By Me</a></p>
+<p><a href="/share/borrow/byothers">My Items Borrowed By Others</a></p>
+</div></div>
+<div class="prdhd">Facilities Reservations</div>
+<div class="nano"><div class="nano-content ">
+<p><a href="/reserve/book">Book A Facility</a></p>
+<p><a href="/reserve/view">View My Booking</a></p>
+</div></div>
+</th:block>
+<th:block th:fragment="superuser">
+<hr/>
+<div class="prdhd">Actions</div>
+<div class="nano"><div class="nano-content ">
+<p><a href="/user/uploadusers">Upload users</a></p>
+<p><a href="/user/resource/add">Add Facility</a></p>
+<p><a href="/user/resource/view">View Facilities</a></p>
+</div></div>
+</th:block>
+</body>
+</html>

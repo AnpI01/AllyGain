@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+
+<footer class="dc-clear pto" th:fragment="agfooter">
+<hr>
+<div class="containerall">
+ <ul><li class="fulliw"><ul>
+<li></li>
+ <li><a href="/comp/about">About</a></li>
+<li><a href="/comp/termsofuse">Terms of Use</a></li>
+<li><a href="/comp/privacy">Privacy Policy</a></li>
+</ul></li>	
+<li class="fulliw"><ul>
+<li></li>
+ <li><a href="/addcommunity">Add Community</a></li>
+</ul></li>
+<li class="fulliw"><ul>
+ <li><div sec:authorize="isAuthenticated()"><a href="/myaccount">MyAccount</a></div>
+ <div sec:authorize="!isAuthenticated()"><a href="/login">Login</a></div></li>
+</ul></li>
+<li class="fulliw"><ul>
+ <li><a href="/comp/contact">Contact Us</a></li>
+</ul></li>
+<li><ul>
+<li></li>
+<li><a href="https://twitter.com/allygaincom" target="_blank">Twitter</a></li>
+</ul></li>                    
+</ul>
+<div class="margtz txtcent"><a href="#">Back to top</a></div><hr/>
+<div class="margtz cpr">&copy; 2024 AllyGain.<br/>This content is copyrighted to AllyGain and may not be reproduced anywhere.</div>
+</div></footer>
+
+</body>
+</html>

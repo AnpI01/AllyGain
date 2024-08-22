@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title>View My Reservations AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Listed Items</li> 
+</ul>
+<hr/>
+
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>My Reservations</h2>
+	<p>Reservations made in the last six months. </p>
+
+<th:block th:if="${not #lists.isEmpty(itemslist)}"><th:block th:each="item: ${itemslist}">
+<div class="row"><div class="col-fix1">
+	<div class="tnd"><div class="pdal">			
+	<div class="oftbl">  
+	<div class="btxtn pto" th:text="${resmap.get(item.rId).name}"></div> 
+	</div>
+	<div class="pto">Reserved for: <strong th:text="${T(com.zenzsol.allygain.util.CommonUtils).getStringDdmmyyyy(item.dt)}"></strong></div>   
+		<div class="pto">Time: <strong th:text="${item.st}"></strong></div> 
+		    <a rel="nofollow" th:href="@{/reserve/modify/{itemid}(itemid = ${item.id})}" class="btn btn-deal">Modify</a>		
+     <a rel="nofollow" th:href="@{/reserve/delete/{itemid}(itemid = ${item.id})}" class="btn btn-deal">Cancel</a>	   		 				  
+	</div>  			 	
+ 	</div>
+</div></div>
+</th:block>
+</th:block>
+<th:block th:if="${#lists.isEmpty(itemslist)}">
+<p>No reservations found. </p>
+</th:block>
+
+
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

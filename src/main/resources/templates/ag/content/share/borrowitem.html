@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>View Shared Item - AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / View Shared Item</li> 
+</ul>
+<hr/>
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: user}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>Item Details</h2>
+
+<div class="mlb"><h4 class="gentxth">Item Details</h4></div>
+
+<div class="row"><div class="col-fix1">
+	<div class="tnd"><div class="pdal">
+	<span th:if="${borrow == 'y'}"><p><div class="dbsucc">Email with details about the transaction has been sent to the owner of the item that you want to borrow. You can pick the item from the housing unit at the specified pickup time.</div></p></span>
+	<span th:if="${borrow == 'n'}">    				
+	<div class="cpnbl">	
+	<span th:if="${sitem.image != null AND NOT #strings.isEmpty(sitem.image)}">
+	<img th:src="'https://storage.googleapis.com/allygain.appspot.com/'+${sitem.image}" th:alt="${sitem.name}" class="imgitm"/></span>
+ 	</div>
+ 	<div class="cpnbr">
+	<div class="oftbl">  
+	<strong th:text="${sitem.name}"></strong>
+	<div class="btxtn pto" th:text="${sitem.desc}"></div> 
+	</div>
+		<div class="pto">Listed Date: <strong th:text="${T(com.zenzsol.allygain.util.CommonUtils).getStringDdmmyyyy(sitem.cDt)}"></strong></div>  
+		<div class="pto">Best time to pickup the item: <strong th:text="${sitem.ptime}"></strong></div>
+	 <div class="pt"> 
+			  <div class="pto">Item owned by House Number: <strong th:text="${aguser.unitId}"></strong></div>
+			  <div class="pto">Email: <strong th:text="${aguser.email}"></strong></div>
+	</div>    
+		 <div class="pt"> 
+    <a rel="nofollow" th:href="@{/share/item/borrow/{itemid}(itemid = ${sitem.id})}" class="btn btn-deal">Borrow</a>				  
+	</div>   				  
+	</div> 
+	</span> 			 	
+ 	</div></div>
+</div></div>
+
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

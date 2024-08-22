@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+<title>View My Resources AllyGain</title>
+<meta name="robots" CONTENT="noindex" />
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+<main>
+<div class="containerall panel">
+<div class="panel-body">
+
+<ul class="lstln">  
+<li><a href="/">Home</a></li>
+<li> / Resources</li> 
+</ul>
+<hr/>
+
+<div class="prdml"><th:block th:replace="~{ag/fragments/usersidenav :: superuser}"></th:block></div>
+
+<div class="prdmr">
+<hr/>
+
+<h2>Community Resources</h2>
+	<p> </p>
+
+<th:block th:if="${not #lists.isEmpty(itemslist)}"><th:block th:each="item: ${itemslist}">
+<div class="row"><div class="col-fix1">
+	<div class="tnd"><div class="pdal">    				
+	<div class="cpnbl">	
+	
+ 	</div>
+ 	<div class="cpnbr">
+	<div class="oftbl">  
+	<strong th:text="${item.name}"></strong>
+	<div class="btxtn pto" th:text="${item.comments}"></div> 
+	</div>
+	<div class="pto">Opens At: <strong th:text="${item.oAt}"></strong></div>   
+	<div class="pto">Closes At: <strong th:text="${item.cAt}"></strong></div>   
+	<div class="pto">Reservation Duration: <strong th:text="${item.rd}"></strong></div>   
+	
+			 <div class="pt"> 
+    <a rel="nofollow" th:href="@{/user/resource/modify/{itemid}(itemid = ${item.id})}" class="btn btn-deal">Modify</a>		
+     <a rel="nofollow" th:href="@{/user/resource/delete/{itemid}(itemid = ${item.id})}" class="btn btn-deal">Delete</a>						  
+	</div>     		 				  
+	</div>  			 	
+ 	</div></div>
+</div></div>
+</th:block>
+</th:block>
+<th:block th:if="${#lists.isEmpty(itemslist)}">
+<p>No items posted in the last six months. </p>
+</th:block>
+
+
+</div>
+</div></div></main>
+</body>
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>

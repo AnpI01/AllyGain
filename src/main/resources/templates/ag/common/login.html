@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<title>Login - AllyGain</title>
+<meta name="robots" CONTENT="INDEX, NOFOLLOW" />
+
+
+<th:block th:replace="~{ag/fragments/header :: partheader}"></th:block>
+</head>
+<body>
+<div th:replace="~{ag/fragments/navmenu :: tobarcmp}"></div>
+<div th:replace="~{ag/fragments/navmenu :: headermenu}"></div>
+ <main>
+		<div class="dc-clear containerall">
+		<div class="panel panel-default">
+  		<div class="panel-body">
+<h2>Login</h2>
+
+		<div class="mlb"><h4 class="gentxth"></h4></div>
+		<form action="#" th:action="@{/login}" method="post"  class="form-horizontal">	
+<span th:if="${!#strings.isEmpty(error)}"><p><div class="dberror">Invalid login.</div></p></span>
+  					<div class="form-group">
+    				<label for="username" class="col-sm-2 control-label">Email Id*</label>
+    				<div class="col-sm-10">
+    				<input type="text" id="username" name="username" placeholder="Email Id" required autofocus maxlength="80" class="form-control input-sm" />    				
+    				</div>
+  			</div>
+  				<div class="form-group">
+    				<label for="password" class="col-sm-2 control-label">Password*</label>
+    				<div class="col-sm-10">
+    				<input type="password" id="password" name="password" placeholder="Password" required maxlength="80" class="form-control input-sm" />    			
+    				</div>
+  			</div>
+	    	<div class="bt-acc">
+      			<button type="submit" class="btn btn-agc">LOGIN</button>
+    			</div>
+<div class="bt-acc"><a href="/forgotpwd">Forgot Password?</a></div>
+	 	 </form>
+	 	 
+</div>
+</div></div></main> 
+</body>
+
+<footer th:replace="~{ag/fragments/footer :: agfooter}"></footer>
+</html>
